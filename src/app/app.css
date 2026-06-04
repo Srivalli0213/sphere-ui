@@ -6,17 +6,17 @@
 }
 
 .app-container {
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 260px);
+  max-width: calc(100vw - 260px);
+  height: 100vh;
   position: relative;
-  background: radial-gradient(circle at top left, rgba(0, 212, 255, 0.08) 0%, transparent 26%),
-              radial-gradient(circle at bottom right, rgba(255, 0, 255, 0.06) 0%, transparent 22%),
-              linear-gradient(150deg, #060a1b 0%, #0f1740 45%, #0b1431 100%);
+  background: #f8fafc;
   overflow: hidden;
-  color: #e2e8f0;
+  color: #0f172a;
   margin-left: 260px;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .page-layout {
@@ -30,10 +30,14 @@
   box-sizing: border-box;
   overflow-y: auto;
   overflow-x: hidden;
+  min-width: 0;
 }
 
 .main-content {
   width: 100%;
+  max-width: 100%;
+  height: 100%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -43,6 +47,10 @@
 
 .content-panel {
   width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   animation: fadeIn 0.3s ease-in;
   padding: 0;
   margin: 0;
@@ -59,100 +67,9 @@
   }
 }
 
-.dashboard-header {
-  width: 100%;
-  margin: 0;
-  padding: 1rem 0 0 0;
-}
-
-.section-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #e0f2fe;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin: 0;
-  padding: 0 1.25rem;
-}
-
-.stats-box {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  width: 100%;
-  box-sizing: border-box;
-  backdrop-filter: none;
-  box-shadow: none;
-}
-
-.side-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
-  width: 100%;
-  margin: 0;
-  padding: 0 1.25rem;
-}
-
-.side-bottom-stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-  width: 100%;
-  margin: 0;
-  padding: 0 1.25rem 1rem 1.25rem;
-}
-
-.side-stat {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  padding: 0.9rem 0.75rem;
-  margin: 0;
-  text-align: center;
-  transition: all 0.25s ease;
-  min-height: fit-content;
-}
-
-.side-stat:hover {
-  transform: translateY(-2px);
-  border-color: rgba(125, 211, 252, 0.3);
-  background: rgba(125, 211, 252, 0.05);
-}
-
-.side-stat .label {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  color: #94a3b8;
-  letter-spacing: 0.08em;
-  line-height: 1.3;
-  margin: 0 0 0.4rem 0;
-  word-break: break-word;
-}
-
-.side-stat .value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #7dd3fc;
-  margin: 0;
-}
-
-.side-stat.large .label {
-  font-size: 0.75rem;
-}
-
-.side-stat.large .value {
-  font-size: 1.75rem;
-}
-
 .placeholder-content {
-  background: rgba(255, 255, 255, 0.05);
-  border: none;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   border-radius: 0;
   padding: 1.5rem;
   margin: 0;
@@ -170,78 +87,33 @@
 .placeholder-content h2 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #7dd3fc;
+  color: #0f172a;
   margin: 0 0 0.6rem 0;
 }
 
 .placeholder-content p {
   font-size: 0.95rem;
-  color: #cbd5e1;
+  color: #64748b;
   margin: 0;
 }
 
-@media (max-width: 1024px) {
-  .app-container {
-    margin-left: 260px;
+/* Desktop Large (1500px+) */
+@media (min-width: 1500px) {
+  .placeholder-content {
+    padding: 1.25rem;
   }
 
-  .side-stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .side-stat .value {
-    font-size: 1.35rem;
-  }
-
-  .side-stat.large .value {
-    font-size: 1.5rem;
+  .placeholder-content h2 {
+    font-size: 1.3rem;
   }
 }
 
-@media (max-width: 768px) {
+/* Mobile & Tablet (max-width: 1023px) */
+@media (max-width: 1023px) {
   .app-container {
     margin-left: 0;
-  }
-
-  .dashboard-header {
-    padding: 0.75rem 0 0 0;
-  }
-
-  .section-title {
-    padding: 0 1rem;
-  }
-
-  .side-stats {
-    grid-template-columns: 1fr;
-    gap: 0.6rem;
-    padding: 0 1rem;
-  }
-
-  .side-bottom-stats {
-    grid-template-columns: 1fr;
-    gap: 0.6rem;
-    padding: 0 1rem 0.85rem 1rem;
-  }
-
-  .section-title {
-    font-size: 1rem;
-  }
-
-  .side-stat {
-    padding: 0.75rem 0.6rem;
-  }
-
-  .side-stat .label {
-    font-size: 0.65rem;
-    margin: 0 0 0.3rem 0;
-  }
-
-  .side-stat .value {
-    font-size: 1.25rem;
-  }
-
-  .side-stat.large .value {
-    font-size: 1.4rem;
+    width: 100%;
+    max-width: 100vw;
   }
 
   .placeholder-content {
