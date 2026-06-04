@@ -1,18 +1,22 @@
 ﻿:host {
   display: block;
+  width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .app-container {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   position: relative;
-  background: radial-gradient(circle at top left, rgba(0, 212, 255, 0.18) 0%, transparent 26%),
-              radial-gradient(circle at bottom right, rgba(255, 0, 255, 0.14) 0%, transparent 22%),
+  background: radial-gradient(circle at top left, rgba(0, 212, 255, 0.08) 0%, transparent 26%),
+              radial-gradient(circle at bottom right, rgba(255, 0, 255, 0.06) 0%, transparent 22%),
               linear-gradient(150deg, #060a1b 0%, #0f1740 45%, #0b1431 100%);
-  overflow: visible;
+  overflow: hidden;
   color: #e2e8f0;
-  margin-left: 280px;
+  margin-left: 260px;
+  display: flex;
+  flex-direction: column;
 }
 
 .page-layout {
@@ -20,21 +24,28 @@
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  min-height: 100vh;
-  padding: 2rem 3rem;
+  height: 100%;
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .main-content {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .content-panel {
   width: 100%;
   animation: fadeIn 0.3s ease-in;
+  padding: 0;
+  margin: 0;
 }
 
 @keyframes fadeIn {
@@ -50,120 +61,141 @@
 
 .dashboard-header {
   width: 100%;
-  margin-bottom: 0.5rem;
+  margin: 0;
+  padding: 1rem 0 0 0;
 }
 
 .section-title {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #e0f2fe;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin: 0 0 1rem;
+  margin: 0;
+  padding: 0 1.25rem;
 }
 
 .stats-box {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 28px;
-  padding: 1.6rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
   width: 100%;
   box-sizing: border-box;
-  backdrop-filter: blur(14px);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 20px 50px rgba(0,0,0,0.12);
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
 .side-stats {
   display: grid;
-  grid-template-columns: repeat(3, minmax(180px, 1fr));
-  gap: 24px;
-  margin-top: 1rem;
-  align-items: stretch;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  width: 100%;
+  margin: 0;
+  padding: 0 1.25rem;
 }
 
 .side-bottom-stats {
   display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 1fr));
-  gap: 18px;
-  margin-top: 0.75rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  width: 100%;
+  margin: 0;
+  padding: 0 1.25rem 1rem 1.25rem;
 }
 
 .side-stat {
-  flex: 1 1 180px;
-  min-width: 180px;
-  max-width: 260px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
-  padding: 1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.9rem 0.75rem;
+  margin: 0;
   text-align: center;
-  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  transition: all 0.25s ease;
+  min-height: fit-content;
 }
 
 .side-stat:hover {
-  transform: translateY(-4px);
-  border-color: rgba(125, 211, 252, 0.4);
-  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  border-color: rgba(125, 211, 252, 0.3);
+  background: rgba(125, 211, 252, 0.05);
 }
 
 .side-stat .label {
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  color: #7dd3fc;
-  letter-spacing: 0.12em;
+  color: #94a3b8;
+  letter-spacing: 0.08em;
   line-height: 1.3;
-  overflow-wrap: normal;
-  word-break: normal;
-  white-space: normal;
+  margin: 0 0 0.4rem 0;
+  word-break: break-word;
 }
 
 .side-stat .value {
-  margin-top: 0.4rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #ffffff;
-}
-
-.side-stat.large {
-  min-width: 180px;
-  padding: 1.2rem 1.4rem;
+  color: #7dd3fc;
+  margin: 0;
 }
 
 .side-stat.large .label {
-  font-size: 1rem;
+  font-size: 0.75rem;
 }
 
 .side-stat.large .value {
-  font-size: 2.4rem;
+  font-size: 1.75rem;
 }
 
 .placeholder-content {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 28px;
-  padding: 3rem;
-  min-height: 500px;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-radius: 0;
+  padding: 1.5rem;
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(14px);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 20px 50px rgba(0,0,0,0.12);
+  backdrop-filter: none;
+  box-shadow: none;
+  box-sizing: border-box;
 }
 
 .placeholder-content h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 600;
   color: #7dd3fc;
-  margin-bottom: 1rem;
+  margin: 0 0 0.6rem 0;
 }
 
 .placeholder-content p {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: #cbd5e1;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .app-container {
+    margin-left: 260px;
+  }
+
+  .side-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .side-stat .value {
+    font-size: 1.35rem;
+  }
+
+  .side-stat.large .value {
+    font-size: 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -171,15 +203,57 @@
     margin-left: 0;
   }
 
-  .page-layout {
-    padding: 1.5rem;
+  .dashboard-header {
+    padding: 0.75rem 0 0 0;
+  }
+
+  .section-title {
+    padding: 0 1rem;
   }
 
   .side-stats {
     grid-template-columns: 1fr;
+    gap: 0.6rem;
+    padding: 0 1rem;
   }
 
   .side-bottom-stats {
     grid-template-columns: 1fr;
+    gap: 0.6rem;
+    padding: 0 1rem 0.85rem 1rem;
+  }
+
+  .section-title {
+    font-size: 1rem;
+  }
+
+  .side-stat {
+    padding: 0.75rem 0.6rem;
+  }
+
+  .side-stat .label {
+    font-size: 0.65rem;
+    margin: 0 0 0.3rem 0;
+  }
+
+  .side-stat .value {
+    font-size: 1.25rem;
+  }
+
+  .side-stat.large .value {
+    font-size: 1.4rem;
+  }
+
+  .placeholder-content {
+    padding: 1.25rem;
+    min-height: 100%;
+  }
+
+  .placeholder-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .placeholder-content p {
+    font-size: 0.9rem;
   }
 }
