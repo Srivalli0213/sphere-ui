@@ -12,10 +12,10 @@ ng serve
 
 ## Basic git commands
 
-git status : To check what changed in current code repo
-git add <file name> or git add . (Where dot indicates all files)
-git commit -m "Added dashboard screen"
-git push
+git status : To check what changed in current code repo     
+git add <file name> or git add . (Where dot indicates all files)        
+git commit -m "Added dashboard screen"      
+git push        
 
 ## Building
 
