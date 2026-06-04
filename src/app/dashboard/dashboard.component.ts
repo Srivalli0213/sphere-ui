@@ -9,6 +9,16 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  topKpis = [
+    { label: 'Completed Projects', value: 82 },
+    { label: 'Pending Projects', value: 23 },
+    { label: 'Total Projects', value: 124 }
+  ];
+
+  bottomKpis = [
+    { label: 'Trending Projects', value: 9 },
+    { label: 'Upcoming Projects', value: 10 }
+  ];
 
   projectBreakdown = [
     { label: 'Hackathon Projects', value: 30, color: '#00d4ff' },

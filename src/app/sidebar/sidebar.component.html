@@ -1,0 +1,25 @@
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h1 class="sidebar-title">Sphere</h1>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="menu-items">
+      <button 
+        *ngFor="let item of menuItems"
+        class="menu-item"
+        [class.active]="activeMenu === item.id"
+        (click)="selectMenu(item.id)">
+        <span class="menu-icon">{{ item.icon }}</span>
+        <span class="menu-label">{{ item.label }}</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="profile-btn">
+      <span class="profile-icon">👤</span>
+      Profile
+    </button>
+  </div>
+</div>

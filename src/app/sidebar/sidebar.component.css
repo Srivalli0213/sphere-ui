@@ -1,0 +1,148 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 260px;
+  background: rgba(6, 10, 27, 0.98);
+  border-right: 1px solid rgba(125, 211, 252, 0.08);
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  box-shadow: 1px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-header {
+  padding: 1.5rem 1.25rem;
+  border-bottom: 1px solid rgba(125, 211, 252, 0.08);
+}
+
+.sidebar-title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #7dd3fc;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 15px rgba(125, 211, 252, 0.2);
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1.25rem 0;
+  overflow-y: auto;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0 0.75rem;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.menu-item:hover {
+  background: rgba(125, 211, 252, 0.08);
+  border-color: rgba(125, 211, 252, 0.2);
+  color: #e0f2fe;
+}
+
+.menu-item.active {
+  background: rgba(125, 211, 252, 0.12);
+  border-color: rgba(125, 211, 252, 0.4);
+  color: #7dd3fc;
+  box-shadow: inset 0 0 8px rgba(125, 211, 252, 0.08);
+}
+
+.menu-icon {
+  font-size: 1.1rem;
+  min-width: 1.2rem;
+}
+
+.menu-label {
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid rgba(125, 211, 252, 0.08);
+}
+
+.profile-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.9rem;
+  background: rgba(125, 211, 252, 0.08);
+  border: 1px solid rgba(125, 211, 252, 0.15);
+  border-radius: 8px;
+  color: #7dd3fc;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.profile-btn:hover {
+  background: rgba(125, 211, 252, 0.15);
+  border-color: rgba(125, 211, 252, 0.3);
+}
+
+.profile-icon {
+  font-size: 1rem;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(125, 211, 252, 0.15);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(125, 211, 252, 0.3);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 240px;
+  }
+
+  .sidebar-title {
+    font-size: 1.2rem;
+  }
+
+  .menu-item {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  .menu-icon {
+    font-size: 1rem;
+  }
+}
