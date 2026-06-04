@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 export class SidebarComponent {
   @Output() menuChange = new EventEmitter<string>();
 
-  activeMenu = 'dashboard';
+  activeMenu = 'projects';
 
   menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: '📊' },

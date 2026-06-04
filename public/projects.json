@@ -1,0 +1,32 @@
+[
+  {
+    "studentId": "STU001",
+    "studentName": "Aarav Sharma",
+    "type": "Hackathon Project",
+    "contact": "aarav.sharma@gmail.com"
+  },
+  {
+    "studentId": "STU002",
+    "studentName": "Priya Nair",
+    "type": "Final Project",
+    "contact": "priya.nair@gmail.com"
+  },
+  {
+    "studentId": "STU003",
+    "studentName": "Rohan Mehta",
+    "type": "Other",
+    "contact": "rohan.mehta@gmail.com"
+  },
+  {
+    "studentId": "STU004",
+    "studentName": "Ananya Rao",
+    "type": "Hackathon Project",
+    "contact": "ananya.rao@gmail.com"
+  },
+  {
+    "studentId": "STU005",
+    "studentName": "Karthik Iyer",
+    "type": "Final Project",
+    "contact": "karthik.iyer@gmail.com"
+  }
+]

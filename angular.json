@@ -20,6 +20,11 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
+                "glob": "projects.json",
+                "input": ".",
+                "output": "."
+              },
+              {
                 "glob": "**/*",
                 "input": "public"
               }

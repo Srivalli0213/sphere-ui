@@ -1,0 +1,128 @@
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100%;
+}
+
+.projects-view {
+  width: 100%;
+  min-height: 100%;
+  padding: 1rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  box-sizing: border-box;
+}
+
+.projects-header {
+  margin-bottom: 1rem;
+}
+
+.projects-header h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.table-shell {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.projects-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+.projects-table th,
+.projects-table td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  color: #0f172a;
+  font-size: 0.95rem;
+}
+
+.projects-table th {
+  background: #f8fafc;
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.projects-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.projects-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.type-select {
+  width: 100%;
+  min-width: 170px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f172a;
+  padding: 0.55rem 0.65rem;
+  font: inherit;
+}
+
+.type-select:focus {
+  border-color: #2563eb;
+  outline: 2px solid rgba(37, 99, 235, 0.18);
+  outline-offset: 1px;
+}
+
+.contact-link {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+.empty-state {
+  display: flex;
+  min-height: 220px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .projects-view {
+    padding: 0.85rem;
+  }
+
+  .projects-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .table-shell {
+    overflow-x: auto;
+  }
+
+  .projects-table th,
+  .projects-table td {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+}
