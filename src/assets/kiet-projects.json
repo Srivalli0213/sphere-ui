@@ -1,0 +1,44 @@
+﻿[
+  {
+    "id": 1,
+    "type": "Hackathon Project",
+    "contact": "aarav.sharma@gmail.com",
+    "projectTitle": "Smart Traffic Management System",
+    "status": "completed"
+  },
+  {
+    "id": 2,
+    "type": "Final Project",
+    "contact": "priya.nair@gmail.com",
+    "projectTitle": "AI-Powered Personal Finance Assistant",
+    "status": "in progress"
+  },
+  {
+    "id": 3,
+    "type": "Other",
+    "contact": "rohan.mehta@gmail.com",
+    "projectTitle": "Blockchain-Based Supply Chain Management",
+    "status": "open"
+  },
+  {
+    "id": 4,
+    "type": "Hackathon Project",
+    "contact": "ananya.rao@gmail.com",
+    "projectTitle": "Virtual Reality Therapy for Mental Health",
+    "status": "completed"
+  },
+  {
+    "id": 5,
+    "type": "Final Project",
+    "contact": "karthik.iyer@gmail.com",
+    "projectTitle": "IoT-Based Smart Home Automation System",
+    "status": "in progress"
+  },
+  {
+    "id": 6,
+    "type": "Final Project",
+    "contact": "john@gmail.com",
+    "projectTitle": "Water softner installation system",
+    "status": "open"
+  }
+]

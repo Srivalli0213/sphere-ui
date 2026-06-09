@@ -3,22 +3,29 @@
     <h2>Projects</h2>
   </header>
 
+  <div *ngIf="!loaded" class="loading-state" role="status" aria-live="polite">
+    <div class="spinner" aria-hidden="true"></div>
+    <div class="loading-text">Loading projects…</div>
+  </div>
+
   <div class="table-shell" *ngIf="loaded && projects.length > 0; else noProjects">
     <table class="projects-table">
       <thead>
         <tr>
-          <th scope="col">Project Title</th>
-          <th scope="col">Project Type</th>
+          <th scope="col">ID</th>
+          <th scope="col">Title</th>
+          <th scope="col">Type</th>
+          <th scope="col">Status</th>
           <th scope="col">Contact</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let project of projects">
+          <td data-label="ID">{{ project.id }}</td>
           <td data-label="Project Title">{{ project.projectTitle }}</td>
-          <td data-label="Project Type">
-            <select class="type-select" [(ngModel)]="project.type" aria-label="Project type">
-              <option *ngFor="let option of projectTypeOptions" [value]="option">{{ option }}</option>
-            </select>
+          <td data-label="Project Type">{{ project.type }}</td>
+          <td data-label="Status">
+            <span class="status" [ngClass]="project.status">{{ project.status }}</span>
           </td>
           <td data-label="Contact">
             <a class="contact-link" [href]="'mailto:' + project.contact">{{ project.contact }}</a>
