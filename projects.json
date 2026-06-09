@@ -1,32 +1,32 @@
 [
   {
-    "studentId": "STU001",
-    "studentName": "Aarav Sharma",
+    
     "type": "Hackathon Project",
     "contact": "aarav.sharma@gmail.com"
+    "projectTitle": "Smart Traffic Management System",
   },
   {
-    "studentId": "STU002",
-    "studentName": "Priya Nair",
+    
     "type": "Final Project",
     "contact": "priya.nair@gmail.com"
+    "projectTitle": "AI-Powered Personal Finance Assistant",
   },
   {
-    "studentId": "STU003",
-    "studentName": "Rohan Mehta",
+   
     "type": "Other",
     "contact": "rohan.mehta@gmail.com"
+    "projectTitle": "Blockchain-Based Supply Chain Management", 
   },
   {
-    "studentId": "STU004",
-    "studentName": "Ananya Rao",
+   
     "type": "Hackathon Project",
     "contact": "ananya.rao@gmail.com"
+    "projectTitle": "Virtual Reality Therapy for Mental Health",
   },
   {
-    "studentId": "STU005",
-    "studentName": "Karthik Iyer",
+    
     "type": "Final Project",
     "contact": "karthik.iyer@gmail.com"
+    "projectTitle": "IoT-Based Smart Home Automation System",
   }
 ]

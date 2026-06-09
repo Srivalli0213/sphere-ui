@@ -1,31 +1,26 @@
 [
   {
-    "studentId": "STU001",
-    "studentName": "Aarav Sharma",
+    "projectTitle": "Campus Event Planner",
     "type": "Hackathon Project",
     "contact": "aarav.sharma@gmail.com"
   },
   {
-    "studentId": "STU002",
-    "studentName": "Priya Nair",
+    "projectTitle": "Student Result Portal",
     "type": "Final Project",
     "contact": "priya.nair@gmail.com"
   },
   {
-    "studentId": "STU003",
-    "studentName": "Rohan Mehta",
+    "projectTitle": "Library Book Tracker",
     "type": "Other",
     "contact": "rohan.mehta@gmail.com"
   },
   {
-    "studentId": "STU004",
-    "studentName": "Ananya Rao",
+    "projectTitle": "Smart Attendance System",
     "type": "Hackathon Project",
     "contact": "ananya.rao@gmail.com"
   },
   {
-    "studentId": "STU005",
-    "studentName": "Karthik Iyer",
+    "projectTitle": "Online Feedback App",
     "type": "Final Project",
     "contact": "karthik.iyer@gmail.com"
   }
