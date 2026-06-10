@@ -34,9 +34,19 @@
             <div class="legend-badge" [style.background]="item.color"></div>
             <div>
               <strong>{{ item.label }}</strong>
-              <div class="legend-value">{{ item.value }}%</div>
+              <div class="legend-value">{{ item.value }} ({{ (item.value / (totalProjectCount || 1) * 100) | number:'1.1-1' }}%)</div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-panel">
+      <div class="list-card">
+        <div class="list-title">Completed Projects</div>
+        <div class="completed-count">
+          <div class="count-value">{{ completedProjects.length || (topKpis.find(k => k.label === 'Completed Projects')?.value) || 0 }}</div>
+          <div class="count-label">projects completed</div>
         </div>
       </div>
     </div>
