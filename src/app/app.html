@@ -1,41 +1,11 @@
-﻿<app-sidebar (menuChange)="onMenuChange($event)"></app-sidebar>
+<app-sidebar [(activeMenu)]="activeMenu" (menuChange)="onMenuChange($event)"></app-sidebar>
 
 <div class="app-container">
   <div class="page-layout">
     <div class="main-content">
-      <!-- Dashboard View -->
-      <div *ngIf="activeMenu === 'dashboard'" class="content-panel">
-       <app-dashboard></app-dashboard>
-      </div>
-
-      <!-- Projects View -->
-      <div *ngIf="activeMenu === 'projects'" class="content-panel">
-       <app-projects></app-projects>
-      </div>
-
-      <!-- Analytics View -->
-      <div *ngIf="activeMenu === 'analytics'" class="content-panel">
-       <div class="placeholder-content">
-         <h2>Analytics</h2>
-         <p>View detailed analytics and insights</p>
-       </div>
-      </div>
-
-      <!-- Reports View -->
-      <div *ngIf="activeMenu === 'reports'" class="content-panel">
-       <div class="placeholder-content">
-         <h2>Reports</h2>
-         <p>Generate and view reports</p>
-       </div>
-      </div>
-
-      <!-- Settings View -->
-      <div *ngIf="activeMenu === 'settings'" class="content-panel">
-       <div class="placeholder-content">
-         <h2>Settings</h2>
-         <p>Configure your application settings</p>
-       </div>
-      </div>
+     <div class="content-panel">
+       <router-outlet></router-outlet>
+     </div>
     </div>
   </div>
 </div>
