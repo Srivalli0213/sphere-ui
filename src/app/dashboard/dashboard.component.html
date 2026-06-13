@@ -1,6 +1,6 @@
 <div class="dashboard">
   <div class="dashboard-header">
-    <h2 class="section-title"></h2>
+    <h2 class="section-title">Dashboard Overview</h2>
   </div>
 
   <div class="stats-box">
@@ -34,11 +34,12 @@
             <div class="legend-badge" [style.background]="item.color"></div>
             <div>
               <strong>{{ item.label }}</strong>
-              <div class="legend-value">{{ item.value }}%</div>
+              <div class="legend-value">{{ item.value }} ({{ (item.value / (totalProjectCount || 1) * 100) | number:'1.1-1' }}%)</div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>

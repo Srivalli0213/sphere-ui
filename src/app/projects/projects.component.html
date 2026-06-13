@@ -1,11 +1,19 @@
 <section class="projects-view">
-  <header class="projects-header">
-    <h2>Projects</h2>
+  <header class="projects-header" style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+    <h2 style="margin:0;">Projects</h2>
+    <div>
+      <button class="btn-add-project" (click)="addProject()" aria-label="Add new project" style="padding:0.5rem 0.75rem; background:#2563eb; color:#fff; border:none; border-radius:6px; cursor:pointer;">+ New Project</button>
+    </div>
   </header>
 
   <div *ngIf="!loaded" class="loading-state" role="status" aria-live="polite">
     <div class="spinner" aria-hidden="true"></div>
     <div class="loading-text">Loading projects…</div>
+  </div>
+
+  <div style="width:100%; margin:0.75rem 0;">
+    <label for="projectFilter" style="display:block; margin-bottom:0.25rem; font-weight:600;">Filter projects</label>
+    <input id="projectFilter" type="search" (input)="applyFilter($event)" placeholder="Filter by title, contact or type" style="width:100%; padding:0.5rem; border:1px solid #ccc; border-radius:4px;" />
   </div>
 
   <div class="table-shell" *ngIf="loaded && projects.length > 0; else noProjects">
@@ -16,6 +24,10 @@
           <th scope="col">Title</th>
           <th scope="col">Type</th>
           <th scope="col">Status</th>
+          <th scope="col">Student Group</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">Deadline</th>
+          <th scope="col">Rating</th>
           <th scope="col">Contact</th>
         </tr>
       </thead>
@@ -26,6 +38,14 @@
           <td data-label="Project Type">{{ project.type }}</td>
           <td data-label="Status">
             <span class="status" [ngClass]="project.status">{{ project.status }}</span>
+          </td>
+          <td data-label="Student Group">{{ project.studentGroup }}</td>
+          <td data-label="Start Date">{{ project.startDate ? (project.startDate | date:'mediumDate') : '' }}</td>
+          <td data-label="Deadline">{{ project.deadline ? (project.deadline | date:'mediumDate') : '' }}</td>
+          <td data-label="Rating">
+            <div style="display:flex; align-items:center; gap:0.25rem;">
+              <span *ngFor="let i of [1,2,3,4,5]" style="color:#f59e0b; font-size:1rem;">{{ i <= (project.rating||0) ? '★' : '☆' }}</span>
+            </div>
           </td>
           <td data-label="Contact">
             <a class="contact-link" [href]="'mailto:' + project.contact">{{ project.contact }}</a>
