@@ -1,27 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { MatTableModule } from '@angular/material/table';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTableDataSource } from '@angular/material/table';
-
-type RawProject = {
-  id?: number;
-  type?: string;
-  status?: string;
-  startDate?: string | null;
-  deadline?: string | null;
-};
+import { ProjectsService, NormalizedProject } from '../projects/projects.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule, MatIconModule, MatButtonModule],
+  imports: [CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
@@ -39,30 +23,22 @@ export class DashboardComponent implements OnInit {
 
   projectBreakdown: { label: string; value: number; color: string }[] = [];
 
-  // list of completed project details for dashboard
-  completedProjects: Array<{ projectTitle?: string; contact?: string; startDate?: string | null; deadline?: string | null }> = [];
-
-  // Material table
-  displayedColumns: string[] = ['projectTitle', 'contact', 'startDate', 'deadline'];
-  dataSource = new MatTableDataSource<any>([]);
-
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly projectsService: ProjectsService, private readonly cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.loadProjects();
   }
 
   private loadProjects(): void {
-    this.http.get<RawProject[]>('assets/kiet-projects.json').subscribe({
-      next: projects => this.computeMetrics(projects || []),
+    this.projectsService.getProjects().subscribe({
+      next: (projects: NormalizedProject[]) => this.computeMetrics(projects || []),
       error: () => this.computeMetrics([])
     });
   }
 
-  private computeMetrics(projects: RawProject[]): void {
+  private computeMetrics(projects: NormalizedProject[]): void {
     const total = projects.length;
     const completed = projects.filter(p => (p.status || '').toLowerCase() === 'completed').length;
-    // count only explicit "in progress" statuses for the dashboard
     const inProgress = projects.filter(p => (p.status || '').toLowerCase() === 'in progress').length;
 
     this.topKpis = [
@@ -93,19 +69,11 @@ export class DashboardComponent implements OnInit {
       { label: 'Upcoming Projects', value: upcoming }
     ];
 
-    // prepare completed projects list
-    this.completedProjects = projects
-      .filter(p => (p.status || '').toLowerCase() === 'completed')
-      .map(p => ({ projectTitle: (p as any).projectTitle || (p as any).title || 'Untitled', contact: (p as any).contact || (p as any).email || 'contact@example.com', startDate: p.startDate ?? null, deadline: p.deadline ?? null }));
-
-    // populate mat-table datasource
-    this.dataSource.data = this.completedProjects;
+    // ensure view updates
+    console.log('[Dashboard] computeMetrics:', { total, completed, inProgress });
+    this.cdr.markForCheck();
   }
 
-  applyFilter(event: Event){
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
 
   get totalProjectCount(): number {
     return this.projectBreakdown.reduce((sum, item) => sum + item.value, 0);
