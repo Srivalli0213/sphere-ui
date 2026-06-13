@@ -1,21 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProjectsComponent } from './projects/projects.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, DashboardComponent, ProjectsComponent],
+  imports: [CommonModule, SidebarComponent, RouterOutlet],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
-export class App {
+export class App implements OnInit {
   title = 'sphere-ui';
-  activeMenu = 'projects';
+  activeMenu = 'dashboard';
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.syncMenuWithRoute();
+  }
 
   onMenuChange(menuId: string) {
     this.activeMenu = menuId;
+    this.router.navigate([`/${menuId}`]);
+  }
+
+  private syncMenuWithRoute() {
+    const urlSegment = this.router.url.split('/')[1];
+    if (urlSegment) {
+      this.activeMenu = urlSegment;
+    }
   }
 }
