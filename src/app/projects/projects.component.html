@@ -58,4 +58,111 @@
   <ng-template #noProjects>
     <div class="empty-state" *ngIf="loaded">No Projects Found</div>
   </ng-template>
+
+  <!-- Add Project Modal -->
+  <div *ngIf="showAddProjectModal" class="modal-overlay" (click)="closeAddProjectModal()">
+    <div class="modal-dialog" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3 style="margin:0;">Add New Project</h3>
+        <button (click)="closeAddProjectModal()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">✕</button>
+      </div>
+      <form class="modal-form" (ngSubmit)="submitAddProject()">
+        <div style="margin-bottom:1rem;">
+          <label for="projectTitle" style="display:block; margin-bottom:0.25rem; font-weight:600;">Project Title *</label>
+          <input 
+            id="projectTitle" 
+            type="text" 
+            [(ngModel)]="newProjectForm.projectTitle" 
+            name="projectTitle"
+            placeholder="Enter project title"
+            required
+            style="width:100%; padding:0.5rem; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;" />
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label for="projectType" style="display:block; margin-bottom:0.25rem; font-weight:600;">Type *</label>
+          <select 
+            id="projectType" 
+            [(ngModel)]="newProjectForm.type" 
+            name="type"
+            required
+            style="width:100%; padding:0.5rem; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;">
+            <option value="Hackathon Project">Hackathon Project</option>
+            <option value="Final Project">Final Project</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label for="projectStatus" style="display:block; margin-bottom:0.25rem; font-weight:600;">Status *</label>
+          <select 
+            id="projectStatus" 
+            [(ngModel)]="newProjectForm.status" 
+            name="status"
+            required
+            style="width:100%; padding:0.5rem; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;">
+            <option value="open">Open</option>
+            <option value="in progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label for="studentGroup" style="display:block; margin-bottom:0.25rem; font-weight:600;">Student Group</label>
+          <select 
+            id="studentGroup" 
+            [(ngModel)]="newProjectForm.studentGroup" 
+            name="studentGroup"
+            style="width:100%; padding:0.5rem; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;">
+            <option value="1Y -2020-2024">1Y -2020-2024</option>
+            <option value="2Y -2024-2028">2Y -2024-2028</option>
+            <option value="3Y -2028-2032">3Y -2028-2032</option>
+            <option value="4Y -2032-2036">4Y -2032-2036</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label for="startDate" style="display:block; margin-bottom:0.25rem; font-weight:600;">Start Date</label>
+          <input 
+            id="startDate" 
+            type="date" 
+            [(ngModel)]="newProjectForm.startDate" 
+            name="startDate"
+            style="width:100%; padding:0.5rem; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;" />
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label for="deadline" style="display:block; margin-bottom:0.25rem; font-weight:600;">Deadline</label>
+          <input 
+            id="deadline" 
+            type="date" 
+            [(ngModel)]="newProjectForm.deadline" 
+            name="deadline"
+            style="width:100%; padding:0.5rem; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;" />
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label for="contact" style="display:block; margin-bottom:0.25rem; font-weight:600;">Contact *</label>
+          <input 
+            id="contact" 
+            type="email" 
+            [(ngModel)]="newProjectForm.contact" 
+            name="contact"
+            placeholder="contact@example.com"
+            required
+            style="width:100%; padding:0.5rem; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;" />
+        </div>
+
+        <div style="display:flex; gap:0.5rem; justify-content:flex-end;">
+          <button 
+            type="button" 
+            (click)="closeAddProjectModal()" 
+            style="padding:0.5rem 1rem; background:#e5e7eb; border:none; border-radius:4px; cursor:pointer;">Cancel</button>
+          <button 
+            type="submit" 
+            style="padding:0.5rem 1rem; background:#2563eb; color:#fff; border:none; border-radius:4px; cursor:pointer;">Add Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </section>

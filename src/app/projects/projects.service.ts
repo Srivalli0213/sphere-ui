@@ -16,12 +16,33 @@ export type NormalizedProject = {
 
 @Injectable({ providedIn: 'root' })
 export class ProjectsService {
+  private readonly LOCAL_STORAGE_KEY = 'sphere-ui-added-projects';
+
   constructor(private readonly http: HttpClient) {}
 
   getProjects(): Observable<NormalizedProject[]> {
     return this.http.get<any[]>('assets/kiet-projects.json').pipe(
-      map(list => (list || []).map((p, i) => this.normalizeProject(p, i)))
+      map(list => {
+        const baseProjects = (list || []).map((p, i) => this.normalizeProject(p, i));
+        const addedProjects = this.getAddedProjectsFromStorage();
+        return [...baseProjects, ...addedProjects];
+      })
     );
+  }
+
+  addProjectToStorage(project: NormalizedProject): void {
+    const added = this.getAddedProjectsFromStorage();
+    added.push(project);
+    localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(added));
+  }
+
+  private getAddedProjectsFromStorage(): NormalizedProject[] {
+    try {
+      const stored = localStorage.getItem(this.LOCAL_STORAGE_KEY);
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
   }
 
   private normalizeProject(p: any, i: number): NormalizedProject {
