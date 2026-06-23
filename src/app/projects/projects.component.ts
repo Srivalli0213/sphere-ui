@@ -59,7 +59,7 @@ export class ProjectsComponent implements OnInit {
    type: 'Hackathon Project',
    status: 'open',
    contact: '',
-   studentGroup: '1Y -2020-2024',
+   studentGroup: 'Freshers',
    startDate: null,
    deadline: null
   };
@@ -108,6 +108,10 @@ export class ProjectsComponent implements OnInit {
    this.showAddProjectModal = true;
   }
 
+  exportProjects() {
+   this.projectsService.exportProjectsToJson();
+  }
+
   closeAddProjectModal() {
    this.showAddProjectModal = false;
    this.resetForm();
@@ -147,7 +151,7 @@ export class ProjectsComponent implements OnInit {
      type: 'Hackathon Project',
      status: 'open',
      contact: '',
-     studentGroup: '1Y -2020-2024',
+     studentGroup: 'Freshers',
      startDate: null,
      deadline: null
    };
@@ -176,13 +180,12 @@ export class ProjectsComponent implements OnInit {
        let index = Math.floor((cohortStart - 2020) / 4) + 1;
        if (index < 1) index = 1;
        if (index > 4) index = ((index - 1) % 4) + 1;
-       const bucketStarts = [2020, 2024, 2028, 2032];
-       const start = bucketStarts[index - 1];
-       studentGroup = `${index}Y -${start}-${start + 4}`;
+       const studentGroupLabels = ['Freshers', 'Second years', 'Third years', 'Final years'];
+       studentGroup = studentGroupLabels[index - 1];
      }
    }
 
-   if (!studentGroup) studentGroup = '1Y -2020-2024';
+   if (!studentGroup) studentGroup = 'Freshers';
 
    let rating = 1;
    const s = (status || '').toLowerCase();

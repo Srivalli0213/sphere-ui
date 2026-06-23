@@ -36,6 +36,19 @@ export class ProjectsService {
     localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(added));
   }
 
+  exportProjectsToJson(): void {
+    this.getProjects().subscribe(projects => {
+      const dataStr = JSON.stringify(projects, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'kiet-projects.json';
+      link.click();
+      URL.revokeObjectURL(url);
+    });
+  }
+
   private getAddedProjectsFromStorage(): NormalizedProject[] {
     try {
       const stored = localStorage.getItem(this.LOCAL_STORAGE_KEY);
@@ -63,15 +76,14 @@ export class ProjectsService {
         // clamp index between 1 and 4
         if (index < 1) index = 1;
         if (index > 4) index = ((index - 1) % 4) + 1;
-        // map to fixed buckets starting at 2020, 2024, 2028, 2032
-        const bucketStarts = [2020, 2024, 2028, 2032];
-        const start = bucketStarts[index - 1];
-        studentGroup = `${index}Y -${start}-${start + 4}`;
+        // map to student group labels
+        const studentGroupLabels = ['Freshers', 'Second years', 'Third years', 'Final years'];
+        studentGroup = studentGroupLabels[index - 1];
       }
     }
 
-    // ensure a default bucket when studentGroup is not determined
-    if (!studentGroup) studentGroup = '1Y -2020-2024';
+    // ensure a default group when studentGroup is not determined
+    if (!studentGroup) studentGroup = 'Freshers';
 
     // compute rating from status: completed->5, in progress->3, open->1
     let rating = 1;
