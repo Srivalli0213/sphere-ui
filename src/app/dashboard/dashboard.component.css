@@ -83,7 +83,7 @@
 @media (max-width:600px){ .stats-panel{ grid-template-columns: 1fr; } }
 
 .stat-card{
-  background:linear-gradient(180deg,var(--card-bg),var(--card-bg));
+  background:#ffffff;
   border:1px solid rgba(11,18,32,0.04);
   border-radius:10px;
   padding:0.85rem;
@@ -116,7 +116,7 @@
 .stat-card.large .value{ font-size:1.9rem; }
 
 .chart-card{
-  background:var(--card-bg);
+  background:#ffffff;
   border-radius:12px;
   border:1px solid rgba(11,18,32,0.04);
   padding:1.25rem;
