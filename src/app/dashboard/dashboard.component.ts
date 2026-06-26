@@ -10,6 +10,14 @@ import { ProjectsService, NormalizedProject } from '../projects/projects.service
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  private static readonly CHART_PALETTE = [
+    '#00d4ff',
+    '#ff00ff',
+    '#7c3aed',
+    '#34d399',
+    '#f59e0b',
+  ];
+
   topKpis = [
     { label: 'Completed Projects', value: 0 },
     { label: 'In Progress', value: 0 },
@@ -54,8 +62,11 @@ export class DashboardComponent implements OnInit {
       typeCounts[t] = (typeCounts[t] || 0) + 1;
     });
 
-    const palette = ['#00d4ff', '#ff00ff', '#7c3aed', '#34d399', '#f59e0b'];
-    this.projectBreakdown = Object.entries(typeCounts).map(([label, value], i) => ({ label, value, color: palette[i % palette.length] }));
+    this.projectBreakdown = Object.entries(typeCounts).map(([label, value], i) => ({
+      label,
+      value,
+      color: DashboardComponent.CHART_PALETTE[i % DashboardComponent.CHART_PALETTE.length]
+    }));
 
     // upcoming = deadlines in future
     const now = Date.now();
@@ -77,6 +88,11 @@ export class DashboardComponent implements OnInit {
 
   get totalProjectCount(): number {
     return this.projectBreakdown.reduce((sum, item) => sum + item.value, 0);
+  }
+
+  getBreakdownPercent(value: number): number {
+    const total = this.totalProjectCount || 1;
+    return (value / total) * 100;
   }
 
   get pieGradient(): string {

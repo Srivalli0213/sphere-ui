@@ -1,7 +1,4 @@
 <div class="dashboard">
-  <div class="dashboard-header">
-    <h2 class="section-title">Dashboard Overview</h2>
-  </div>
 
   <div class="stats-box">
     <div class="stats-panel row-top">
@@ -24,17 +21,31 @@
       <div class="chart-card">
         <div class="chart-title">Project type breakdown</div>
 
-        <div class="chart-visual">
-          <div class="pie-chart" [style.background]="pieGradient"></div>
-          <div class="chart-center">{{ totalProjectCount }} Projects</div>
-        </div>
+        <div class="chart-body">
+          <div class="chart-visual">
+            <div class="donut-chart" [style.background]="pieGradient"></div>
+            <div class="chart-center">{{ totalProjectCount }} Projects</div>
+          </div>
 
-        <div class="chart-legend">
-          <div *ngFor="let item of projectBreakdown" class="legend-item">
-            <div class="legend-badge" [style.background]="item.color"></div>
-            <div>
-              <strong>{{ item.label }}</strong>
-              <div class="legend-value">{{ item.value }} ({{ (item.value / (totalProjectCount || 1) * 100) | number:'1.1-1' }}%)</div>
+          <div class="chart-legend">
+            <div *ngFor="let item of projectBreakdown" class="legend-item">
+              <span class="legend-badge" [style.background]="item.color"></span>
+              <div class="legend-details">
+                <div class="legend-header">
+                  <span class="legend-label">{{ item.label }}</span>
+                  <span class="legend-count">{{ item.value }} projects</span>
+                </div>
+                <div class="legend-progress">
+                  <div class="legend-bar">
+                    <span
+                      class="legend-bar-fill"
+                      [style.width.%]="getBreakdownPercent(item.value)"
+                      [style.backgroundColor]="item.color"
+                    ></span>
+                  </div>
+                  <span class="legend-percent">{{ getBreakdownPercent(item.value) | number:'1.1-1' }}%</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
