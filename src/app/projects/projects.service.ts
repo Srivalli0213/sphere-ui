@@ -34,6 +34,18 @@ export class ProjectsService {
     const added = this.getAddedProjectsFromStorage();
     added.push(project);
     localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(added));
+
+    // attempt to persist to local API which updates src/assets/kiet-projects.json
+    // the API is optional; if it's not running the app continues to work with localStorage
+    try {
+      this.http.post('http://localhost:3001/api/projects', project).subscribe({
+        next: () => console.log('Project persisted to local JSON via API'),
+        error: (err) => console.warn('Could not persist project to API:', err?.message || err)
+      });
+    } catch (e) {
+      // swallow errors - persistence to local JSON is best-effort
+      console.warn('Failed to POST project to API', e);
+    }
   }
 
   exportProjectsToJson(): void {
