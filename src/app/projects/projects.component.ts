@@ -100,7 +100,7 @@ export class ProjectsComponent implements OnInit {
      return;
    }
    this.projects = this.allProjects.filter(p => {
-     return (`${p.projectTitle} ${p.contact} ${p.type}`.toLowerCase()).includes(q);
+      return (`${p.projectTitle} ${p.status} ${p.contact} ${p.type}`.toLowerCase()).includes(q);
    });
   }
 

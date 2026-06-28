@@ -14,7 +14,7 @@
 
   <div style="width:100%; margin:0.75rem 0;">
     <label for="projectFilter" style="display:block; margin-bottom:0.25rem; font-weight:600;">Filter projects</label>
-    <input id="projectFilter" type="search" (input)="applyFilter($event)" placeholder="Filter by title, contact or type" style="width:100%; padding:0.5rem; border:1px solid #ccc; border-radius:4px;" />
+    <input id="projectFilter" type="search" (input)="applyFilter($event)" placeholder="Filter by title, status, contact or type" style="width:100%; padding:0.5rem; border:1px solid #ccc; border-radius:4px;" />
   </div>
 
   <div class="table-shell" *ngIf="loaded && projects.length > 0; else noProjects">
