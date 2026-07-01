@@ -10,7 +10,7 @@ function sendJson(res, status, obj) {
   res.writeHead(status, {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type'
   });
   res.end(str);
@@ -19,7 +19,7 @@ function sendJson(res, status, obj) {
 function handleOptions(req, res) {
   res.writeHead(204, {
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type'
   });
   res.end();
@@ -82,6 +82,33 @@ const server = http.createServer((req, res) => {
           if (we) return sendJson(res, 500, { error: we.message });
           return sendJson(res, 200, { success: true, projects });
         });
+      });
+    });
+
+    return;
+  }
+
+  if (req.method === 'DELETE' && req.url.startsWith('/api/projects/')) {
+    const id = Number(req.url.slice('/api/projects/'.length));
+
+    fs.readFile(PROJECTS_FILE, 'utf8', (err, data) => {
+      if (err && err.code !== 'ENOENT') {
+        return sendJson(res, 500, { error: err.message });
+      }
+
+      let projects;
+      try {
+        projects = err && err.code === 'ENOENT' ? [] : JSON.parse(data || '[]');
+        if (!Array.isArray(projects)) projects = [];
+      } catch (e) {
+        projects = [];
+      }
+
+      const filtered = projects.filter(p => Number(p && p.id) !== id);
+
+      fs.writeFile(PROJECTS_FILE, JSON.stringify(filtered, null, 2) + '\n', 'utf8', (we) => {
+        if (we) return sendJson(res, 500, { error: we.message });
+        return sendJson(res, 200, { success: true, projects: filtered });
       });
     });
 

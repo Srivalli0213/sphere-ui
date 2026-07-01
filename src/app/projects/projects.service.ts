@@ -48,6 +48,23 @@ export class ProjectsService {
     }
   }
 
+  deleteProjectFromStorage(id: number): void {
+    const added = this.getAddedProjectsFromStorage().filter(p => p.id !== id);
+    localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(added));
+
+    // attempt to remove from local API which updates src/assets/kiet-projects.json
+    // the API is optional; if it's not running the app continues to work with localStorage
+    try {
+      this.http.delete(`http://localhost:3001/api/projects/${id}`).subscribe({
+        next: () => console.log('Project removed from local JSON via API'),
+        error: (err) => console.warn('Could not remove project from API:', err?.message || err)
+      });
+    } catch (e) {
+      // swallow errors - persistence to local JSON is best-effort
+      console.warn('Failed to DELETE project via API', e);
+    }
+  }
+
   private getAddedProjectsFromStorage(): NormalizedProject[] {
     try {
       const stored = localStorage.getItem(this.LOCAL_STORAGE_KEY);

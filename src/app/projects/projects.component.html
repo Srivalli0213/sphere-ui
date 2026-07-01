@@ -27,6 +27,7 @@
           <th scope="col">Deadline</th>
           <th scope="col">Rating</th>
           <th scope="col">Contact</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -47,6 +48,9 @@
           </td>
           <td data-label="Contact">
             <a class="contact-link" [href]="'mailto:' + project.contact">{{ project.contact }}</a>
+          </td>
+          <td data-label="Actions">
+            <button type="button" class="btn-delete-project" (click)="deleteProject(project)" [attr.aria-label]="'Delete ' + project.projectTitle" style="padding:0.4rem 0.65rem; background:#dc2626; color:#fff; border:none; border-radius:6px; cursor:pointer;">Delete</button>
           </td>
         </tr>
       </tbody>

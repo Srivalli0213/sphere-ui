@@ -108,6 +108,15 @@ export class ProjectsComponent implements OnInit {
    this.showAddProjectModal = true;
   }
 
+  deleteProject(project: Project) {
+   if (!confirm(`Delete project "${project.projectTitle}"?`)) return;
+
+   this.allProjects = this.allProjects.filter(p => p.id !== project.id);
+   this.projects = this.projects.filter(p => p.id !== project.id);
+   this.projectsService.deleteProjectFromStorage(project.id);
+   this.cdr.markForCheck();
+  }
+
   closeAddProjectModal() {
    this.showAddProjectModal = false;
    this.resetForm();
