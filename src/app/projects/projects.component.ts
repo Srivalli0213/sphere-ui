@@ -108,10 +108,6 @@ export class ProjectsComponent implements OnInit {
    this.showAddProjectModal = true;
   }
 
-  exportProjects() {
-   this.projectsService.exportProjectsToJson();
-  }
-
   closeAddProjectModal() {
    this.showAddProjectModal = false;
    this.resetForm();

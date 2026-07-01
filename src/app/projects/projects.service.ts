@@ -48,19 +48,6 @@ export class ProjectsService {
     }
   }
 
-  exportProjectsToJson(): void {
-    this.getProjects().subscribe(projects => {
-      const dataStr = JSON.stringify(projects, null, 2);
-      const dataBlob = new Blob([dataStr], { type: 'application/json' });
-      const url = URL.createObjectURL(dataBlob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'kiet-projects.json';
-      link.click();
-      URL.revokeObjectURL(url);
-    });
-  }
-
   private getAddedProjectsFromStorage(): NormalizedProject[] {
     try {
       const stored = localStorage.getItem(this.LOCAL_STORAGE_KEY);
