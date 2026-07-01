@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
@@ -17,7 +18,11 @@ export class App implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    this.syncMenuWithRoute();
+    this.syncMenuWithRoute(this.router.url);
+
+    this.router.events
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe(event => this.syncMenuWithRoute(event.urlAfterRedirects));
   }
 
   onMenuChange(menuId: string) {
@@ -25,8 +30,8 @@ export class App implements OnInit {
     this.router.navigate([`/${menuId}`]);
   }
 
-  private syncMenuWithRoute() {
-    const urlSegment = this.router.url.split('/')[1];
+  private syncMenuWithRoute(url: string) {
+    const urlSegment = url.split('/')[1];
     if (urlSegment) {
       this.activeMenu = urlSegment;
     }
